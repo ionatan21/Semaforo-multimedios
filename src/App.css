@@ -1,5 +1,43 @@
 .App {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+button{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.semaforoRojo:not(.activo) {
+  opacity: 0.5;
+}
+
+.semaforoVerde:not(.activo) {
+  opacity: 0.5;
+}
+
+.semaforoAmarillo:not(.activo) {
+  opacity: 0.5;
+}
+
+.semaforoVerde{
+  background-color: green;
+  color: white;
+}
+
+.semaforoRojo{
+  background-color: red;
+  color: white;
+
+}
+
+.semaforoAmarillo{
+  background-color: yellow;
+  color: black;
 }
 
 .App-logo {
