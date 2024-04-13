@@ -1,23 +1,36 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
+
+const initialState = { semaforoActivo: null };
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "CAMBIAR_COLOR":
+      return { ...state, semaforoActivo: action.payload };
+    default:
+      return state;
+  }
+};
 
 const Semaforo = () => {
-  const [semaforoActivo, setSemaforoActivo] = useState(null);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleClick = (color) => {
-    setSemaforoActivo(color);
+    dispatch({ type: "CAMBIAR_COLOR", payload: color });
   };
 
   return (
-    <div>
+    <div className="semaforo">
       <button
-        className={`semaforoRojo ${semaforoActivo === "rojo" ? "activo" : ""}`}
+        className={`semaforoRojo ${
+          state.semaforoActivo === "rojo" ? "activo" : ""
+        }`}
         onClick={() => handleClick("rojo")}
       >
         Rojo
       </button>
       <button
         className={`semaforoAmarillo ${
-          semaforoActivo === "amarillo" ? "activo" : ""
+          state.semaforoActivo === "amarillo" ? "activo" : ""
         }`}
         onClick={() => handleClick("amarillo")}
       >
@@ -25,12 +38,13 @@ const Semaforo = () => {
       </button>
       <button
         className={`semaforoVerde ${
-          semaforoActivo === "verde" ? "activo" : ""
+          state.semaforoActivo === "verde" ? "activo" : ""
         }`}
         onClick={() => handleClick("verde")}
       >
         Verde
       </button>
+
     </div>
   );
 };
